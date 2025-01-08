@@ -61,11 +61,11 @@ public extension BinaryReader {
     }
 
     mutating func decodeLength() throws -> Int {
-        var len: UInt8 = 0
-        var size: UInt8 = 0
+        var len: Int = 0
+        var size: Int = 0
         while true {
             let elem: UInt8 = try read()
-            len |= (elem & 0x7F) << (size * 7)
+            len |= (Int(elem) & 0x7F) << (size * 7)
             size += 1
             if elem & 0x80 == 0 {
                 break
